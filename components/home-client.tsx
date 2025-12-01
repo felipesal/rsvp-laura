@@ -7,7 +7,7 @@ import Link from "next/link";
 
 export default function HomeClient() {
   return (
-    <div className="min-h-screen text-white flex flex-col items-center justify-center overflow-hidden relative p-6">
+    <div className="min-h-dvh text-white flex flex-col items-center justify-center overflow-hidden relative p-6">
 
       {/* Efeitos de brilho no fundo */}
       <motion.div
