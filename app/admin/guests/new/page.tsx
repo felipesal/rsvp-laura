@@ -6,11 +6,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
+interface Companion {
+  name: string,
+  status: string;
+}
+
 export default function NewGuestPage() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [companions, setCompanions] = useState([{ name: "", status: "pending" }]);
+  const [companions, setCompanions] = useState<Companion[]>([]);
 
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
@@ -20,17 +25,17 @@ export default function NewGuestPage() {
     setCompanions([...companions, { name: "", status: "pending" }]);
   }
 
-  function updateCompanion(index, field, value) {
+  function updateCompanion(index:number, field: keyof Companion, value: any) {
     const updated = [...companions];
     updated[index][field] = value;
     setCompanions(updated);
   }
 
-  function removeCompanion(index) {
+  function removeCompanion(index: number) {
     setCompanions(companions.filter((_, i) => i !== index));
   }
 
-  async function handleSubmit(e) {
+  async function handleSubmit(e: any) {
     console.log(companions);
     e.preventDefault();
     setLoading(true);
@@ -52,8 +57,7 @@ export default function NewGuestPage() {
       setName("");
       setEmail("");
       setPhone("");
-      setCompanions([{ name: "", email: "" }]);
-    } catch (err) {
+    } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
