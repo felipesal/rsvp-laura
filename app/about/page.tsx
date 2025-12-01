@@ -47,7 +47,7 @@ export default function PartyInfoPage() {
           transition={{ delay: 0.4, duration: 0.8 }}
           className="text-lg md:text-xl text-white/90"
         >
-          A Laura está completando <span className="font-semibold text-yellow-300">9 anos</span> e organizou uma festa cheia de brilho, magia e energia no estilo das{" "}
+          A Laura está completando <span className="font-semibold text-yellow-300">8 anos</span> e organizou uma festa cheia de brilho, magia e energia no estilo das{" "}
           <span className="font-semibold text-pink-300">Guerreiras do K-Pop</span>!
           <br /><br />
           Vai ter muita diversão, música, surpresas e momentos inesquecíveis.  
