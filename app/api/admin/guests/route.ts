@@ -1,4 +1,4 @@
-import db from "@/lib/db"
+import db from "@/lib/db";
 import { getBaseUrl } from "@/lib/utils";
 import { NextResponse } from "next/server";
 import {Resend} from "resend";

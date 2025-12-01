@@ -1,6 +1,6 @@
 export default function ConfirmedPage() {
     return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-gradient-to-b from-pink-100 to-purple-200">
+      <div className="bg-[url('/background.png')] bg-cover bg-center bg-black/50 bg-blend-multiply min-h-screen flex items-center justify-center p-6 bg-gradient-to-b from-pink-100 to-purple-200">
         <div className="max-w-md w-full bg-white/80 backdrop-blur-lg rounded-2xl shadow-2xl p-8 text-center">
           <h1 className="text-3xl font-bold text-pink-600 mb-4">
             Obrigado pela confirmação! 💖

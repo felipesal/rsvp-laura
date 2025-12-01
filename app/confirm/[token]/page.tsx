@@ -23,7 +23,7 @@ export default async function ValidateInvitePage({ params }: { params: { token: 
   if (!invite) return notFound();
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
+    <div className="min-h-screen flex items-center justify-center p-4 bg-[url('/background.png')] bg-cover bg-center bg-black/50 bg-blend-multiply">
       <Card className="w-full max-w-lg shadow-xl">
         <CardContent className="p-6 space-y-6">
           <h1 className="text-2xl font-bold text-center">Detalhes do Convite</h1>

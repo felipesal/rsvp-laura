@@ -49,6 +49,8 @@ export default function RecoveredInviteForm(inviteProps: InviteProps) {
             setSaved(true);
             if(guestStatus) {
                 router.push("/confirmed")
+            } else {
+              router.push("/sorry");
             }
         }
     }
@@ -62,18 +64,25 @@ export default function RecoveredInviteForm(inviteProps: InviteProps) {
     }
 
     return (
-      <div className="space-y-6">
+      <div className="space-y-6 ">
         {/* Convidado principal */}
-        <span>{inviteProps.invite.name}</span>
         <div className="flex justify-between items-center">
-            <span className="font-semibold">Presença:</span>
-            <Switch
-                checked={guestStatus}
-                onCheckedChange={(v) => {
-                setGuestStatus(v);
-                setSaved(false);
-                }}
-            />            
+          <span className="font-bold">{inviteProps.invite.name}</span>
+          <div className="flex justify-between items-center">
+              <div className="flex items-center justify-between">
+                <Switch
+                    checked={guestStatus}
+                    onCheckedChange={(v) => {
+                    setGuestStatus(v);
+                    setSaved(false);
+                    }}
+                    className="data-[state=checked]:bg-pink-600 data-[state=unchecked]:bg-black/50"
+                />  
+                <label htmlFor="presenca" className="text-sm text-gray-700 ml-2">
+                  Confirmado
+                </label>          
+              </div>
+          </div>
         </div>
     
         {/* Acompanhantes */}
@@ -86,14 +95,21 @@ export default function RecoveredInviteForm(inviteProps: InviteProps) {
                 key={index}
                 className="flex justify-between items-center bg-muted p-2 rounded-lg"
               >
-                <span>{c.name}</span>
-                <Switch
-                  checked={c.status === "confirmed"}
-                  onCheckedChange={() => {
-                    toggleCompanion(index);
-                    setSaved(false);
-                  }}
-                />
+                <span className="font-bold">{c.name}</span>
+                <div className="flex items-center justify-between">
+                  <Switch
+                    id="presenca"
+                    checked={c.status === "confirmed"}
+                    onCheckedChange={() => {
+                      toggleCompanion(index);
+                      setSaved(false);
+                    }}
+                    className="data-[state=checked]:bg-pink-600 data-[state=unchecked]:bg-black/50"
+                  />
+                  <label htmlFor="presenca" className="text-sm text-gray-700 ml-2">
+                    Confirmado
+                  </label>
+                </div>
               </div>
             ))}
           </div>
