@@ -13,11 +13,8 @@ export default async function AdminLayout({
     }
 
     return (
-      <html lang="en">
-        <body
-        >
-          {children}
-        </body>
-      </html>
+      <>
+        {children}
+      </>
     );
   }

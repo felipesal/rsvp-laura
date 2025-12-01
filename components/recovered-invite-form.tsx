@@ -39,7 +39,7 @@ export default function RecoveredInviteForm(inviteProps: InviteProps) {
                 status: guestStatus ? "confirmed" : "cancelled",
                 companions: companions.map((c: any) => ({
                     name: c.name,
-                    status: c.status
+                    status: c.status === "confirmed" ? "confirmed" : "cancelled"
                 }))
             })
         });

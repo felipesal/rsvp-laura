@@ -8,7 +8,7 @@ import Link from "next/link";
 export default function PartyInfoPage() {
   return (
     // <div className="min-h-screen bg-gradient-to-b from-pink-500 via-purple-600 to-indigo-700 text-white relative overflow-hidden p-6 flex flex-col items-center">
-    <div className="min-h-screen bg-[url('/background.png')] text-center bg-cover bg-center bg-black/50 bg-blend-multiply text-white p-6 relative overflow-hidden flex flex-col items-center">
+    <div className="min-h-screen bg-[url('/background.png')] text-center bg-cover bg-center bg-black/50 bg-blend-multiply text-white p-6 relative overflow-hidden flex flex-col items-center mt-8">
       {/* Fundo com estrelas */}
       <div className="absolute inset-0 bg-[url('/stars-bg.png')] bg-cover bg-center opacity-40 mix-blend-screen pointer-events-none" />
 

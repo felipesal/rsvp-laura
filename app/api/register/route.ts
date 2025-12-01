@@ -11,6 +11,7 @@ interface User {
 export async function POST(req: Request) {
   const data = await req.json();
   const newUser = data as User
+  console.log(newUser);
   
   // Exemplo de validação simples
   if (!data.email || !data.password) {
