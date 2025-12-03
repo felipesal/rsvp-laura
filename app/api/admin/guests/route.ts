@@ -44,6 +44,11 @@ export async function POST(req: Request) {
 
     // 3. gerar link
     const confirmUrl = `${baseUrl}/confirm/${token}`;
+
+    const message = `Eeei ${data.name}, é com grande alegria que estamos te convidando para a festa da Laurinha. Clique no link e confirme a sua presença.
+    Gostaria de pedir que, se possível, confirme até o dia 10/12 pois precisamos fechar a lista de convidados. Laurinha tá ansiosa pela sua presença! Até lá!`;
+
+    console.log(message);
   
     // 4. enviar e-mail/whatsapp
     // await resend.emails.send({
@@ -67,7 +72,7 @@ export async function POST(req: Request) {
         link: confirmUrl,
         thumnail_url: "https://admin.cnnbrasil.com.br/wp-content/uploads/sites/12/2025/08/Kpop-Demon-Hunters.png?w=1024",
         title: "Confirme sua presença no aniversario da Laura",
-        message: `Olá, é com grande alegria que estamos te convidando para a festa da Laurinha. Clique no link e confirme a sua presença`
+        message: message
       })
     });
 
