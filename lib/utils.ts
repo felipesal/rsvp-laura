@@ -13,7 +13,7 @@ export function getBaseUrl(){
   
     if (process.env.VERCEL_URL) {
       // Preview ou produção na Vercel
-      return `https://${process.env.VERCEL_URL}`;
+      return `https://festa-da-laura.com.br`;
     }
   
     // Ambiente local
