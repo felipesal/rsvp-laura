@@ -1,9 +1,6 @@
 import db from "@/lib/db";
 import { getBaseUrl } from "@/lib/utils";
 import { NextResponse } from "next/server";
-import {Resend} from "resend";
-
-const resend = new Resend(process.env.RESEND_API_KEY!);
 
 export async function GET() {
     const guests = await db.guest.findMany({
@@ -49,17 +46,6 @@ export async function POST(req: Request) {
     Gostaria de pedir que, se possível, confirme até o dia 10/12 pois precisamos fechar a lista de convidados. Laurinha tá ansiosa pela sua presença! Até lá!`;
 
     console.log(message);
-  
-    // 4. enviar e-mail/whatsapp
-    // await resend.emails.send({
-    //   from: "Niver da Lalá <onboarding@resend.dev>",
-    //   to: email,
-    //   subject: "Você foi convidado!",
-    //   html: `
-    //     <p>Clique no link abaixo para confirmar sua presença:</p>
-    //     <a href="${confirmUrl}">${confirmUrl}</a>
-    //   `,
-    // });
 
     const response = await fetch('https://v2-api.gzappy.com/message/send-link', {
       method: 'POST',
