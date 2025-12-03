@@ -47,7 +47,7 @@ export default function NewGuestPage() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, phone, companions }),
+        body: JSON.stringify({ name, phone, companions }),
       });
       console.log(res.json);
 
@@ -55,7 +55,6 @@ export default function NewGuestPage() {
 
       setSuccess(true);
       setName("");
-      setEmail("");
       setPhone("");
     } catch (err: any) {
       setError(err.message);
@@ -99,19 +98,6 @@ export default function NewGuestPage() {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="(XX)XXXXX-XXXX"
-                  required
-                  className="rounded-xl"
-                />
-              </div>
-
-              {/* Email */}
-              <div>
-                <label className="block mb-1 text-purple-700 font-semibold">Email</label>
-                <Input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="example@mail.com"
                   required
                   className="rounded-xl"
                 />
