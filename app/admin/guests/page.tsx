@@ -118,6 +118,50 @@ export default function GuestListPage() {
     );
   }
 
+  function generateCSV(data: Guest[]) {
+    const rows = [];
+    let totalOfGuests = 0;
+  
+    // Cabeçalho
+    rows.push(["Nome", "Tipo", "Status"]);
+  
+    data.forEach((g) => {
+      // Convidado principal
+      if(g.status === "confirmed") {
+        rows.push([g.name, "principal", g.status]);
+        totalOfGuests++;
+      }
+  
+      // Acompanhantes
+      g.companions?.forEach((c) => {
+        if(c.status === "confirmed") {
+          rows.push([c.name, "acompanhante", c.status]);
+          totalOfGuests++
+        }
+      });
+    });
+
+    rows.push(["Total de convidados", totalOfGuests]);
+  
+    // Converte para CSV
+    return rows.map((row) => row.join(",")).join("\n");
+  }
+
+  function downloadCSV(csv: any, filename = "convidados.csv") {
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+  
+    const url = URL.createObjectURL(blob);
+  
+    const link = document.createElement("a");
+    link.href = url;
+    link.setAttribute("download", filename);
+  
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+  
+
   return (
     <div className="w-full overflow-x-hidden p-6 max-w-4xl mx-auto">
       <h1 className="text-2xl font-bold mb-6">Lista de Convidados</h1>
@@ -164,6 +208,15 @@ export default function GuestListPage() {
             Criar Convidado
           </Button>
         </Link>
+        <Button
+          className="bg-pink-600 hover:bg-pink-700 text-white font-semibold"
+          onClick={() => {
+            const csv = generateCSV(guests);
+            downloadCSV(csv);
+          }}
+        >
+          Baixar CSV
+        </Button>
       </div>
 
 
