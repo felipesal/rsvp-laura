@@ -42,8 +42,8 @@ export async function POST(req: Request) {
     // 3. gerar link
     const confirmUrl = `${baseUrl}/confirm/${token}`;
 
-    const message = `Eeei ${data.name}, é com grande alegria que estamos te convidando para a festa da Laurinha. Clique no link e confirme a sua presença.
-    Gostaria de pedir que, se possível, confirme até o dia 10/12 pois precisamos fechar a lista de convidados. Laurinha tá ansiosa pela sua presença! Até lá!`;
+    const message = `Eeei ${data.name}, é com grande alegria que estamos te convidando para a festa da Laurinha, no dia 19/12 às 19:30hhs. Clique no link e confirme a sua presença.
+    Gostaria de pedir que, se possível, confirme até o dia 15/12 pois precisamos fechar a lista de convidados. Laurinha tá ansiosa pela sua presença! Até lá!`;
 
     console.log(message);
 
