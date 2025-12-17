@@ -33,12 +33,6 @@ export default async function ValidateInvitePage({ params }: { params: { token: 
         <CardContent className="p-6 space-y-6">
           <h1 className="text-2xl font-bold text-center">Detalhes do Convite</h1>
           <p>A festa ocorrerá no dia 19/12/2025 às 19:30hs.</p>
-          <Button
-          onClick={directToInvite}
-          className="w-full bg-pink-600 hover:bg-pink-700 text-white"
-        >
-          Mais Detalhes
-        </Button>
           <RecoveredInviteForm invite={invite as Invite} token={token} />
         </CardContent>
       </Card>

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
 import { Invite } from "@/types/types";
-import { useRouter } from "next/navigation";
+import { redirect, useRouter } from "next/navigation";
 
 interface InviteProps {
     invite: Invite,
@@ -63,8 +63,18 @@ export default function RecoveredInviteForm(inviteProps: InviteProps) {
       );
     }
 
+    function directToInvite() {
+      window.open("/about", "_blank");
+    }
+
     return (
       <div className="space-y-6 ">
+        <Button
+          onClick={directToInvite}
+          className="w-full bg-pink-600 hover:bg-pink-700 text-white"
+        >
+          Mais Detalhes
+        </Button>
         {/* Convidado principal */}
         <div className="flex justify-between items-center">
           <span className="font-bold">{inviteProps.invite.name}</span>
