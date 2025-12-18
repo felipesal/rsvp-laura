@@ -8,7 +8,7 @@ export async function POST(req: Request) {
     //envia o email(msg no whatsapp)
     const baseUrl = getBaseUrl();
 
-    const message = `Eeei ${data.name}, passando pra lembrar do aniversário da Laurinha, sexta-feira, às 19:30.
+    const message = `Oie, ${data.name}. Passando pra lembrar do aniversário da Laurinha, amanhã, às 19:30.
     Se quiser mais detalhes, pode clicar no link que vai ter tudo o que você precisa pra curtir a festinha dela. Te vejo lá.`
 
     console.log(message);
