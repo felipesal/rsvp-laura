@@ -7,12 +7,15 @@ export async function GET() {
         select: {
             name:true,
             status: true,
+            phone: true,
             companions: true
         },
         orderBy: {name:'asc'}
     });
 
     const guestsDto = [];
+
+    console.log("guests", guests);
 
 
 

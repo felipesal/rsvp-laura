@@ -19,6 +19,7 @@ interface Companion {
 interface Guest {
   name: string;
   status: 'confirmed' | 'canceled' | 'pending' | 'cancelled';
+  phone: string;
 
   companions?: Companion[];
   // Adicione outras propriedades se existirem
@@ -28,6 +29,7 @@ interface GuestRow {
   nome: string;
   status: 'confirmed' | 'canceled' | 'pending' | 'cancelled';
   tipo: "principal" | "acompanhante";
+  phone: string | null;
 }
 
 export default function GuestListPage() {
@@ -60,6 +62,7 @@ export default function GuestListPage() {
         nome: g.name,
         status: g.status,
         tipo: "principal",
+        phone: g.phone
       });
 
       g.companions?.forEach((a) => {
@@ -67,6 +70,7 @@ export default function GuestListPage() {
           nome: a.name,
           status: a.status,
           tipo: "acompanhante",
+          phone: null
         });
       });
     });
@@ -74,7 +78,7 @@ export default function GuestListPage() {
     return out;
   }, [guests]);
 
-  console.log(guests);
+  console.log("guests",guests);
 
   // 🎛 Aplicação dos filtros
   const filtered = useMemo(() => {
@@ -118,6 +122,34 @@ export default function GuestListPage() {
     );
   }
 
+  async function remindTheGuest(name: string, phone: string | null) {
+    try {
+      const body = JSON.stringify({name, phone});
+      console.log(body);
+      const res = await fetch("/api/admin/guests/sendRemind", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,phone
+        }),
+      });
+
+      if (!res.ok) {
+        throw new Error("Erro ao enviar lembrete");
+      }
+
+      const data = await res.json();
+      console.log("Lembrete enviado:", data);
+
+      alert("Lembrete enviado com sucesso!");
+    } catch (err) {
+      console.error(err);
+      alert("Erro ao enviar lembrete");
+    }
+  }
+
   function generateCSV(data: Guest[]) {
     const rows = [];
     let totalOfGuests = 0;
@@ -128,14 +160,14 @@ export default function GuestListPage() {
     data.forEach((g) => {
       // Convidado principal
       if(g.status === "confirmed") {
-        rows.push([g.name, "principal", g.status]);
+        rows.push([g.name, "principal", statusLabel(g.status)]);
         totalOfGuests++;
       }
   
       // Acompanhantes
       g.companions?.forEach((c) => {
         if(c.status === "confirmed") {
-          rows.push([c.name, "acompanhante", c.status]);
+          rows.push([c.name, "acompanhante", statusLabel(c.status)]);
           totalOfGuests++
         }
       });
@@ -228,6 +260,7 @@ export default function GuestListPage() {
               <th className="text-left p-3 font-medium">Nome</th>
               <th className="text-left p-3 font-medium">Tipo</th>
               <th className="text-left p-3 font-medium">Status</th>
+              <th className="text-left p-3 font-medium">Ação</th>  
             </tr>
           </thead>
           <tbody>
@@ -239,6 +272,12 @@ export default function GuestListPage() {
                   <Badge className={`${statusColor(item.status)} text-white`}>
                     {statusLabel(item.status)}
                   </Badge>
+                </td>
+                <td>
+                  <Button className="bg-pink-600 hover:bg-pink-700 text-white font-semibold"
+                    onClick={() => remindTheGuest(item.nome, item.phone)}>
+                    Enviar Lembrete
+                  </Button>
                 </td>
               </tr>
             ))}
